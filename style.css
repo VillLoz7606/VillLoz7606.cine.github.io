@@ -1,0 +1,324 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+header {
+    background: #d80d06d8;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+nav button {
+    margin: 0 10px;
+    padding: 10px 15px;
+    border: none;
+    background: #000000;
+    color: #fff;
+    cursor: pointer;
+}
+nav button:hover {
+    background: #cfcdcd;
+}
+
+#main-content {
+    padding: 20px;
+}
+
+.section-hidden {
+    display: none;
+}
+
+.card {
+    background: #fff;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.card h3 {
+    margin: 0;
+}
+
+.card button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background: #0056b3;
+}
+
+#news-container {
+    display: flex; /* Usar flexbox para disposición horizontal */
+    flex-direction: row; /* Asegura que las tarjetas se dispongan en fila */
+    flex-wrap: wrap; /* Permite que las tarjetas se ajusten en varias filas si es necesario */
+    gap: 20px; /* Espacio entre las tarjetas */
+    padding: 20px; /* Espacio interno del contenedor */
+}
+.card {
+    background-color: white; /* Color de fondo de la tarjeta */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+    padding: 15px; /* Espacio interno de la tarjeta */
+    width: 300px; /* Ancho fijo de la tarjeta */
+    transition: transform 0.2s; /* Efecto de transición al pasar el mouse */
+}
+.card:hover {
+    transform: scale(1.05); /* Aumenta el tamaño al pasar el mouse */
+}
+.card-image {
+    width: 100%; /* Ajusta la imagen al ancho de la tarjeta */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 8px 8px 0 0;
+}
+
+footer {
+    background-color: #333; /* Color de fondo del footer */
+    color: white; /* Color del texto */
+    padding: 20px; /* Espacio interno */
+    text-align: left; /* Alinear texto a la izquierda */
+}
+.footer-content {
+    display: flex; /* Usar flexbox para disposición horizontal */
+    justify-content: space-between; /* Espacio entre los elementos */
+}
+.creators, .links {
+    width: 45%; /* Ancho de cada sección */
+}
+h3 {
+    margin-bottom: 10px; /* Espacio debajo de los encabezados */
+}
+ol {
+    padding-left: 20px; /* Espacio a la izquierda de la lista ordenada */
+}
+a {
+    color: #00ccff; /* Color de los enlaces */
+    text-decoration: none; /* Sin subrayado */
+}
+a:hover {
+    text-decoration: underline; /* Subrayar al pasar el mouse */
+}
+
+/* Puedes agregar esto a tu style.css */
+.news-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px rgba(221,36,118,0.15);
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+}
+
+/* Botones llamativos y dinámicos */
+button,
+.card button {
+    background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 22px;
+    margin: 8px 5px 0 0;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(221,36,118,0.15);
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover,
+.card button:hover {
+    background: linear-gradient(90deg, #dd2476 0%, #ff512f 100%);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(221,36,118,0.25);
+}
+
+.details-btn {
+    background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+}
+
+.details-btn:hover {
+    background: linear-gradient(90deg, #00c6ff 0%, #007bff 100%);
+}
+
+#favorites-list {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    list-style: none;
+    padding: 20px 0 20px 20px;
+    margin: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    background: transparent;
+}
+
+#favorites-list::-webkit-scrollbar {
+    height: 10px;
+    background: #eee;
+    border-radius: 5px;
+}
+#favorites-list::-webkit-scrollbar-thumb {
+    background: #ff512f;
+    border-radius: 5px;
+}
+
+#favorites-list li {
+    flex: 0 0 300px;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+.favorite-btn {
+    background: linear-gradient(90deg, #ffb347 0%, #ffcc33 100%);
+    color: #333;
+}
+
+.favorite-btn:hover {
+    background: linear-gradient(90deg, #ffcc33 0%, #ffb347 100%);
+    color: #000;
+}
+
+.delete-btn, .remove-favorite-btn {
+    background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
+}
+
+.delete-btn:hover, .remove-favorite-btn:hover {
+    background: linear-gradient(90deg, #ff4b2b 0%, #ff416c 100%);
+}
+
+
+.news-form button,
+#comment-form button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    border-radius: 30px;
+}
+
+#details-view {
+    max-width: 600px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    text-align: center;
+}
+#details-view h2 {
+    margin-bottom: 20px;
+}
+#movie-description {
+    text-align: justify;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+#movie-image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+#comments-list {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    max-width: 400px;
+    margin: 25px auto 0 auto;
+    padding: 15px 20px;
+    list-style: none;
+}
+
+#comments-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#comments-list li:last-child {
+    border-bottom: none;
+}
+#comments-list li > div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#comments-list li .delete-btn {
+    margin-left: 20px;
+    min-width: 110px;
+}
+
+#search-news {
+    display: block;
+    margin: 30px auto 25px auto;
+    width: 100%;
+    max-width: 400px;
+    padding: 14px 18px;
+    border-radius: 30px;
+    border: 2px solid #ff512f;
+    font-size: 1.1rem;
+    font-family: inherit;
+    background: #fff;
+    color: #222;
+    box-shadow: 0 2px 8px rgba(221,36,118,0.08);
+    transition: border 0.3s, box-shadow 0.3s;
+    outline: none;
+}
+
+#search-news:focus {
+    border: 2.5px solid #dd2476;
+    box-shadow: 0 4px 16px rgba(221,36,118,0.15);
+    background: #f9f6fa;
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 30px auto 25px auto;
+}
+
+#search-news {
+    padding-right: 45px; /* Espacio para el icono */
+}
+
+.search-icon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff512f;
+    font-size: 1.2em;
+    pointer-events: none;
+}
