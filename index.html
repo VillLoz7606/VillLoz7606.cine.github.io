@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cineverse - Noticias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Cineverse</h1>
+        <nav>
+            <button onclick="showView('home')">Inicio</button>
+            <button onclick="showView('favorites')">Favoritos</button>
+            <button onclick="showView('comments')">Comentarios</button>
+            <button onclick="showView('create-news')">Crear Noticia</button>
+        </nav>
+    </header>
+    <main id="main-content">
+        <section id="home-view">
+            <h2>Noticias del Cine</h2>
+            <div class="search-container">
+                <input type="text" id="search-news" placeholder="Buscar noticia...">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+            </div>
+            <div id="news-container">
+                <!-- Aquí se insertarán los cards -->
+            </div>
+
+            <template id="news-card-template">
+                <div class="card">
+                    <img class="card-image" src="" alt="">
+                    <h3 class="card-title"></h3>
+                    <p class="card-description"></p>
+                    <span class="card-date" style="font-size:0.9em;color:#888;"></span>
+                    <button class="details-btn">Leer más</button>
+                    <button class="favorite-btn">Añadir a Favoritos</button>
+                    <button class="delete-btn">Eliminar</button>
+                    <button class="edit-btn">Editar</button>
+                    <button class="like-btn">👍 <span class="like-count">0</span></button>
+                    <button class="dislike-btn">👎 <span class="dislike-count">0</button>
+                </div>
+            </template>
+        </section>
+        <section id="favorites-view" class="section-hidden">
+            <h2>Mis Favoritos</h2>
+            <ul id="favorites-list"></ul>
+        </section>
+        <section id="comments-view" class="section-hidden">
+            <h2>Comentarios</h2>
+            <form id="comment-form" class="news-form">
+                <div class="form-group">
+                    <input type="text" id="comment-input" placeholder="Escribe tu comentario" required>
+                </div>
+                <button type="submit">Añadir Comentario</button>
+            </form>
+            <ul id="comments-list"></ul>
+        </section>
+        <section id="details-view" class="section-hidden">
+            <h2 id="movie-title"></h2>
+            <img id="movie-image" style="max-width:100%;border-radius:10px;margin-bottom:15px;"/>
+            <p id="movie-description" style="text-align:justify;"></p>
+            <button onclick="showView('home')">Volver</button>
+        </section>
+        <section id="create-news-view" class="section-hidden">
+    <h2>Crear Noticia</h2>
+    <form id="news-form" class="news-form">
+        <div class="form-group">
+            <label for="news-title">Título de la noticia</label>
+            <input type="text" id="news-title" placeholder="Título de la noticia" required>
+        </div>
+        <div class="form-group">
+            <label for="news-description">Descripción breve</label>
+            <input type="text" id="news-description" placeholder="Descripción breve" required>
+        </div>
+        <div class="form-group">
+            <label for="news-image">URL de la imagen</label>
+            <input type="text" id="news-image" placeholder="URL de la imagen" required>
+        </div>
+        <div class="form-group">
+            <label for="news-content">Contenido completo</label>
+            <textarea id="news-content" placeholder="Contenido completo" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="news-date">Fecha de publicación</label>
+            <input type="date" id="news-date" required>
+        </div>
+        <button type="submit">Crear noticia</button>
+    </form>
+</section>
+    </main>
+     <footer>
+       <div class="footer-content">
+            <div class="creators">
+                <h3>Creadores</h3>
+                <ol>
+                    <li>Carlos Villarreal . +58 4141268826</li>
+                    <li>Leonardo Rodriguez . +58 4243561130</li>
+                    <li>Luis Jose Perpesi . +58 4148726633</li>
+                </ol>
+            </div>
+            <div class="links">
+                <h3>Enlaces</h3>
+                <ol>
+                    <li><a href="#" onclick="showView('home')">Inicio</a></li>
+                    <li><a href="#" onclick="showView('favorites')">Favoritos</a></li>
+                    <li><a href="#" onclick="showView('comments')">Comentarios</a></li>
+                    <li><a href="#" onclick="showView('create-news')">Crear Noticia</a></li>
+                </ol>
+            </div>
+        </div> 
+  </footer>
+
+    <script src="app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+<script>
+    // Ejemplo para obtener noticias
+    fetch('https://localhost:3000/news')
+        .then(res => res.json())
+        .then(news => {
+            // Renderizar las noticias
+        });
+
+    // Ejemplo para crear las noticias
+    fetch('https://localhost:3000/news', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, description, content, image})
+    })
+</script>
+</body>
+</html>
