@@ -10,12 +10,19 @@
 </head>
 <body>
     <header>
+        <div class="header-content">
         <h1>Cineverse</h1>
+        <div class="user-info" id="user-info" style="display: none;">
+            <span id="current-user"></span>
+            <button onclick="logout()" class="logout-btn">Cerrar Sesión</button>
+        </div>
+        </div>
         <nav>
             <button onclick="showView('home')">Inicio</button>
             <button onclick="showView('favorites')">Favoritos</button>
             <button onclick="showView('comments')">Comentarios</button>
-            <button onclick="showView('create-news')">Crear Noticia</button>
+            <button id="create-news-btn" onclick="showView('create-news')" style="display: none;">Crear Noticia</button>
+            <button id="login-btn" onclick="showView('login')">Iniciar Sesión</button>
         </nav>
     </header>
     <main id="main-content">
@@ -37,17 +44,21 @@
                     <span class="card-date" style="font-size:0.9em;color:#888;"></span>
                     <button class="details-btn">Leer más</button>
                     <button class="favorite-btn">Añadir a Favoritos</button>
-                    <button class="delete-btn">Eliminar</button>
-                    <button class="edit-btn">Editar</button>
+                    <button class="delete-btn admin-only" style="display: none;">Eliminar</button>
+                    <button class="edit-btn admin-only" style="display: none;">Editar</button>
                     <button class="like-btn">👍 <span class="like-count">0</span></button>
                     <button class="dislike-btn">👎 <span class="dislike-count">0</button>
                 </div>
             </template>
         </section>
+
+        <!-- Vista de favoritos-->
         <section id="favorites-view" class="section-hidden">
             <h2>Mis Favoritos</h2>
             <ul id="favorites-list"></ul>
         </section>
+
+        <!-- Vista de comentarios-->
         <section id="comments-view" class="section-hidden">
             <h2>Comentarios</h2>
             <form id="comment-form" class="news-form">
@@ -57,61 +68,122 @@
                 <button type="submit">Añadir Comentario</button>
             </form>
             <ul id="comments-list"></ul>
+        </div>
+        <div id="login-required" style="display: none;">
+            <p>Inicia sesión para comentar.</p>
+            <button onclick="showView('login')">Iniciar Sesión</button>
+        </div>
         </section>
+
+        <!--Vista de los detalles del card-->
         <section id="details-view" class="section-hidden">
             <h2 id="movie-title"></h2>
             <img id="movie-image" style="max-width:100%;border-radius:10px;margin-bottom:15px;"/>
             <p id="movie-description" style="text-align:justify;"></p>
+
+            <!-- Sección de comentarios en detalles -->
+             <div class="comments-section">
+                <h3>Comentarios</h3>
+                <div id="detail-comment-section">
+                    <form id="detail-comment-form" class="news-form">
+                        <div class="form-group">
+                            <input type="text" id="detail-comment-input" placeholder="Escribe tu comentario" required>
+                        </div>
+                        <button type="submit">Añadir Comentario</button>
+                    </form>
+                    <ul id="detail-comments-list"></ul>
+                </div>
+                <div id="detail-login-required" style="display: none;">
+                    <p>Inicia sesión para comentar.</p>
+                    <button onclick="showView('login')">Iniciar Sesión</button>
+                </div>
+             </div>
+
             <button onclick="showView('home')">Volver</button>
         </section>
+
+<!-- Vista para crear noticias (solo admin) -->
         <section id="create-news-view" class="section-hidden">
-    <h2>Crear Noticia</h2>
-    <form id="news-form" class="news-form">
-        <div class="form-group">
-            <label for="news-title">Título de la noticia</label>
-            <input type="text" id="news-title" placeholder="Título de la noticia" required>
+            <h2>Crear Noticia</h2>
+            <form id="news-form" class="news-form">
+                <div class="form-group">
+                    <label for="news-title">Título de la noticia</label>
+                    <input type="text" id="news-title" placeholder="Título de la noticia" required>
+                </div>
+                <div class="form-group">
+                    <label for="news-description">Descripción breve</label>
+                    <input type="text" id="news-description" placeholder="Descripción breve" required>
+                </div>
+                <div class="form-group">
+                    <label for="news-image">URL de la imagen</label>
+                    <input type="text" id="news-image" placeholder="URL de la imagen" required>
+                </div>
+                <div class="form-group">
+                    <label for="news-content">Contenido completo</label>
+                    <textarea id="news-content" placeholder="Contenido completo" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="news-date">Fecha de publicación</label>
+                    <input type="date" id="news-date" required>
+                </div>
+                <button type="submit">Crear noticia</button>
+            </form>
+        </section>
+
+    <!-- Vista para iniciar sesión -->
+    <section id="login-view" class="section-hidden">
+        <h2>Iniciar Sesión</h2>
+        <form id="login-form" class="news-form">
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <input type="text" id="username" placeholder="Nombre de usuario" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+
+        <div class="login-info">
+            <h3>Usuarios de prueba</h3>
+            <p><strong>Administrador:</strong> admin / admin1qaz2wsx</p>
+            <p><strong>Usuario:</strong> user / user123</p>
         </div>
-        <div class="form-group">
-            <label for="news-description">Descripción breve</label>
-            <input type="text" id="news-description" placeholder="Descripción breve" required>
-        </div>
-        <div class="form-group">
-            <label for="news-image">URL de la imagen</label>
-            <input type="text" id="news-image" placeholder="URL de la imagen" required>
-        </div>
-        <div class="form-group">
-            <label for="news-content">Contenido completo</label>
-            <textarea id="news-content" placeholder="Contenido completo" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="news-date">Fecha de publicación</label>
-            <input type="date" id="news-date" required>
-        </div>
-        <button type="submit">Crear noticia</button>
-    </form>
-</section>
     </main>
+
      <footer>
-       <div class="footer-content">
-            <div class="creators">
-                <h3>Creadores</h3>
-                <ol>
-                    <li>Carlos Villarreal . +58 4141268826</li>
-                    <li>Leonardo Rodriguez . +58 4243561130</li>
-                    <li>Luis Jose Perpesi . +58 4148726633</li>
-                </ol>
-            </div>
-            <div class="links">
-                <h3>Enlaces</h3>
-                <ol>
-                    <li><a href="#" onclick="showView('home')">Inicio</a></li>
-                    <li><a href="#" onclick="showView('favorites')">Favoritos</a></li>
-                    <li><a href="#" onclick="showView('comments')">Comentarios</a></li>
-                    <li><a href="#" onclick="showView('create-news')">Crear Noticia</a></li>
-                </ol>
-            </div>
-        </div> 
-  </footer>
+  <div class="footer-content">
+    <div class="footer-brand">
+      <h2>Cineverse</h2>
+      <p>Tu portal de noticias, estrenos y novedades del mundo del cine. Descubre, comenta y comparte tus películas favoritas.</p>
+    </div>
+    <div class="creators">
+      <h3>Creadores</h3>
+      <ol>
+        <li>Carlos Villarreal . +58 4141268826</li>
+        <li>Leonardo Rodriguez . +58 4243561130</li>
+        <li>Luis Jose Perpesi . +58 4148726633</li>
+      </ol>
+    </div>
+    <div class="links">
+      <h3>Enlaces</h3>
+      <ol>
+        <li><a href="#" onclick="showView('home')">Inicio</a></li>
+        <li><a href="#" onclick="showView('favorites')">Favoritos</a></li>
+        <li><a href="#" onclick="showView('comments')">Comentarios</a></li>
+        <li><a href="#" onclick="showView('create-news')" class="admin-only" style="display: none;">Crear Noticia</a></li>
+        <li><a href="#" onclick="showView('login')" id="footer-login">Iniciar Sesión</a></li>
+      </ol>
+      <!-- Iconos de redes sociales -->
+      <div class="social-icons">
+        <a href="https://instagram.com/marvel" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://youtube.com/marvel" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
 
     <script src="app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
